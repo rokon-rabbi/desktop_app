@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "CleanSpace — a local-first Linux desktop app that helps you understand, organize, and safely clean files on your computer.",
   "author": "CleanSpace",
+  "homepage": "https://github.com/rokon-rabbi/desktop_app",
   "license": "UNLICENSED",
   "private": true,
   "main": "out/main/index.cjs",
@@ -23,7 +24,8 @@
     "rebuild": "electron-rebuild -f -w better-sqlite3",
     "postinstall": "electron-rebuild -f -w better-sqlite3",
     "dist:deb": "npm run build && electron-builder --linux deb",
-    "dist:appimage": "npm run build && electron-builder --linux AppImage"
+    "dist:appimage": "npm run build && electron-builder --linux AppImage",
+    "dist:linux": "npm run build && electron-builder --linux"
   },
   "build": {
     "appId": "space.cleanspace.app",
@@ -39,14 +41,36 @@
       "icon": "build/icon.png",
       "category": "Utility",
       "target": [
-        { "target": "deb", "arch": ["x64"] },
-        { "target": "AppImage", "arch": ["x64"] }
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
       ],
       "maintainer": "CleanSpace",
       "synopsis": "Understand, organize, and safely clean files on your computer."
     },
     "deb": {
-      "depends": ["libgtk-3-0", "libnotify4", "libnss3", "libxss1", "libxtst6"]
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6"
+      ]
     }
   },
   "dependencies": {
